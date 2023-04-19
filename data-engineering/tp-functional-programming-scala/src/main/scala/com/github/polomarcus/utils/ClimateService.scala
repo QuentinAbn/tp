@@ -51,10 +51,15 @@ object ClimateService {
   /**
    * **Tips**: look at the read me to find some tips for this function
    */
-  def getMinMax(list: List[CO2Record]) : (Double, Double) = ???
+  def getMinMax(list: List[CO2Record]) : (Double, Double) = {
+    val ppmValues = list.map(_.ppm)
+    (ppmValues.min, ppmValues.max)
+  }
 
-  def getMinMaxByYear(list: List[CO2Record], year: Int) : (Double, Double) = ???
-
+  def getMinMaxByYear(list: List[CO2Record], year: Int) : (Double, Double) = {
+    val ppmValues = list.filter(_.year == year).map(_.ppm)
+    (ppmValues.min, ppmValues.max)
+  }
   /**
    * use this function side src/main/scala/com/polomarcus/main/Main (with sbt run)
    * display every item on the list using the CO2Record's "show" function
